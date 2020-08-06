@@ -10,8 +10,9 @@ public class RecieverData : MonoBehaviour
     public Text levelCompleteText;
     public Animation anim;
     public GameManagerBehavior gameManagerBehavior;
-
     public Text recieverText;
+    bool borderEnableFlag = false;
+    public List<GameObject> borderList = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -42,4 +43,27 @@ public class RecieverData : MonoBehaviour
     void finishLevel(){
         gameManagerBehavior.loadNextLevel();
     }
+
+    void Update(){
+        if(Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)){
+            //clearGizmos();
+        }
+    }
+
+    public void clearGizmos(){
+
+        foreach(GameObject gm in borderList){
+            gm.SetActive(borderEnableFlag);
+            if(borderEnableFlag)
+                borderEnableFlag = false;
+            else
+                borderEnableFlag = true;
+        }
+        
+    }
+
+    public void receiverMenu(){
+        gameManagerBehavior.loadInstructionsMainMenu();
+    }
+
 }

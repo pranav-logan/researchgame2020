@@ -9,10 +9,9 @@ public class PointerBehavior : MonoBehaviour
     public DataTransfer transfer;
     public Material pointerMat;
     public Vector3[] quaterionArray = new Vector3[5];
-
     int quaterionIndex = 0;
-
     public GameObject indicator;
+    public ParticleSystem particle;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +23,7 @@ public class PointerBehavior : MonoBehaviour
         quaterionArray[2] = new Vector3(1.5f,0.2f,0.2f);
         quaterionArray[3] = new Vector3(0.2f,0.2f,1.5f);
         quaterionArray[4] = new Vector3(0.2f,1.5f,0.2f);
+        
 
     }
 
@@ -35,16 +35,10 @@ public class PointerBehavior : MonoBehaviour
 
     public void move(){
 
-        //quaterionIndex++; (UNCOMMENT LATER)
+        if(quaterionIndex != transfer.directionIndex)
+        particle.Play();
+        
         quaterionIndex = transfer.directionIndex;
-        /*
-        for(int i = 0; i < transfer.directionsUnableToBeUsed.Length; i++){
-            if(quaterionIndex == transfer.directionsUnableToBeUsed[i]){
-                quaterionIndex++;
-                i = 0;
-            }
-        }
-        */
         if(quaterionIndex > 4)
         quaterionIndex = 0;
         

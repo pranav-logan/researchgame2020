@@ -9,6 +9,7 @@ public class SumCoreData : MonoBehaviour
 {
     public CoreData coreData;
     public DataTransfer dataTransfer;
+    
 
     // Start is called before the first frame update
     void Start()
