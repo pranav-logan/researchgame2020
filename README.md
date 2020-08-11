@@ -5,7 +5,7 @@ Concept & Goal-
 The game has the user create a path from a sensor (starting point) to a reciever (end point). 
 These two elements are seperated by many cores (computational blocks), and the user must position
 what direction these cores face in order to form the proper pathing. Sensors send out numbers one at
-a time, and the receiver expects a ceratin input to complete the level. Core modify the inputs they are 
+a time, and the receiver expects a certain input to complete the level. Cores modify the inputs they are 
 given and as such, the user must find out what cores to utilize in order to get the right output value
 to the receiver.
 
