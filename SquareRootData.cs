@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Script used to give a core the sqaure root behavior once it gets one input
+
 public class SquareRootData : MonoBehaviour
 {
     public CoreData coreData;
     public DataTransfer dataTransfer;
 
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+    // Checks if the user clicks space and then fires if the core is ready to send inputs
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Mouse1)){
@@ -24,10 +25,12 @@ public class SquareRootData : MonoBehaviour
         }
     }
 
+    // Updates the core's info (Text object)
     void LateUpdate(){
         coreData.coreInfo.text = "Object: " + this.gameObject.name + "\n" +  "Return Value: " + coreData.returnValue + "\n";
     }
    
+   // Coroutine that checks for input validity (in case two or more inputs are received at once) 
     public IEnumerator callAction(int val){
         yield return StartCoroutine("wait");
         if(coreData.returnValue != 0){
@@ -42,6 +45,7 @@ public class SquareRootData : MonoBehaviour
         
     }
 
+    // Time delay for coroutine 
     IEnumerator wait(){
         yield return new WaitForSeconds(0.01f);
         print("waiting...");

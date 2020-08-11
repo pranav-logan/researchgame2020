@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Script used to give a core the quotient behavior once it gets two inputs
+
 public class QuotientCoreData : MonoBehaviour
 {
-    // Start is called before the first frame update
     public CoreData coreData;
     public DataTransfer dataTransfer;
 
-    // Start is called before the first frame update
     void Start()
     {
         
@@ -25,6 +25,7 @@ public class QuotientCoreData : MonoBehaviour
         }
     }
 
+    // Function that takes the quotient of the two inputs received
     public void callAction(int val){
         if (coreData.input1 == 0){
             coreData.input1 = val;

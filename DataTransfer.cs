@@ -2,30 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// HOLDS RAYCAST FUNCTIONALITY AND DATA TRANSFER
+// Holds data transfer functionality between objects 
+// Tells objects how to handle recieving and sending inputs/outputs
+
 public class DataTransfer : MonoBehaviour
 {
-
     RaycastHit hit;
     bool startSequence = false;
     public PointerBehavior pointer;
     public int directionIndex = 0;
     public CoreData coreData;
     public Vector3[] listOfDirections = new Vector3[5];
-    public bool lockDataTransfer = false;
-    public bool preventDoubleAction = false;
+    public bool lockDataTransfer = false; // Flag to prevent core pointers to be moved after space is clicked
+    public bool preventDoubleAction = false; // Prevents data from being sent twice to cores
     public GameObject wire;
-    public int[] directionsUnableToBeUsed = new int[10];
+    public int[] directionsUnableToBeUsed = new int[10]; // Array used to tell pointers what directions they cannot face
     int directionsUnableToBeUsedIndex = 0;
-    public bool firstMoveFlag = false;
-   //Used to check if computation has been done, safegaurds against multiple raycasts
+    public bool firstMoveFlag = false;  //Used to check if computation has been done, safegaurds against multiple raycasts
+   
 
-    // Start is called before the first frame update
     void Start()
     {
         Invoke("setup", 0.005f);
     }
 
+    // Calibrate core to know what directions the pointer can face
     void setup(){
         for(int i = 0; i < 10; i++){
             directionsUnableToBeUsed[i] = -1;
@@ -55,14 +56,15 @@ public class DataTransfer : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
+    // Call functions based on user input
     void Update()
     {
-        //Change Direction of Raycast
+        //Change Direction core is facing
         if (Input.GetMouseButtonDown(0)) {
             changeDirection(startSequence);
         }
 
+        // Tells core to fire outputs
         if(Input.GetKeyDown(KeyCode.Space)){
             moveData();
         }
@@ -72,7 +74,9 @@ public class DataTransfer : MonoBehaviour
         preventDoubleAction = false;
     }
 
+    // Used to move values between cores
     public void moveData(){
+
         //Transfer data if raycast hits another core
         if(!lockDataTransfer){
             startSequence = true;
@@ -147,6 +151,7 @@ public class DataTransfer : MonoBehaviour
         }
     }
 
+    // Used to change what direction the core is facing
     void changeDirection(bool start){
         
         if(startSequence){
@@ -187,6 +192,7 @@ public class DataTransfer : MonoBehaviour
         }
     }
 
+    // Used to stop core direction from being changed
     public void stopTransfer(){
         if(preventDoubleAction == true){
             preventDoubleAction = false;

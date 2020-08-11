@@ -2,19 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Script used to give a core the product behavior once it gets two inputs
+
 public class ProductCoreData : MonoBehaviour
 {
-    // Start is called before the first frame update
     public CoreData coreData;
     public DataTransfer dataTransfer;
 
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Mouse1)){
@@ -25,6 +24,7 @@ public class ProductCoreData : MonoBehaviour
         }
     }
 
+    // Function that takes the product of the two inputs received 
     public void callAction(int val){
         if (coreData.input1 == 0){
             coreData.input1 = val;

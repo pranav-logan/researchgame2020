@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Script that spwans borders (markers) on all cores on a certain level when a specific core is clicked
+// Only used for densely packed levels
+
 public class BorderSpawn : MonoBehaviour
 {
 
@@ -10,6 +13,7 @@ public class BorderSpawn : MonoBehaviour
     public List<Vector3> sizeList = new List<Vector3>();
     public int layerIndex;
 
+    // Gets user input
     void Update()
     {
         if(Input.GetMouseButtonDown(0))
@@ -18,6 +22,7 @@ public class BorderSpawn : MonoBehaviour
         }
     }
 
+    // Spawns a border depending on what core the user clicked on
     void spawnBorder()
     {
         RaycastHit  hit;

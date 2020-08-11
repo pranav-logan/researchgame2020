@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Script for borders that allow for recievers to disable/enable them (ease of access)
+
 public class BorderBehavior : MonoBehaviour
 {
-    // Start is called before the first frame update
+    // Adds the border to a list of all borders upon object awakening 
     void Awake(){
         RecieverData recieverData = FindObjectOfType<RecieverData>();
         recieverData.borderList.Add(this.gameObject);

@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Script to manage all wires and compile a list of all of them for game manager functions
+
 public class WireBehavior : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Awake(){
+
+    void Awake()
+    {
         GameManagerBehavior gm = FindObjectOfType<GameManagerBehavior>();
         gm.arrayOfObj.Add(gameObject);
-        //print("Awake called on wire");
     }
 
-    // Update is called once per frame
     void Update()
     {
         

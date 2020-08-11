@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Script added on top of cores to give them the ability to switch behaviors (P key)
+
 public class ChangeCoreBehavior : MonoBehaviour
 {
 
@@ -10,7 +12,8 @@ public class ChangeCoreBehavior : MonoBehaviour
     public GameObject oldCoreType;
     GameObject indicator;
     CoreData data;
-    // Start is called before the first frame update
+    
+    // Spawn marker to notify user that core can be changed
     void Start()
     {
         indicator = Instantiate(changeIndicator, this.gameObject.transform.position, gameObject.transform.rotation);
@@ -19,7 +22,7 @@ public class ChangeCoreBehavior : MonoBehaviour
         data = this.gameObject.GetComponent<CoreData>();
     }
 
-    // Update is called once per frame
+    // Changes core type once 'P' key is clicked on it
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.P)){
@@ -36,10 +39,12 @@ public class ChangeCoreBehavior : MonoBehaviour
         }
     }
 
+    // Updates the core's text with info about what it can change to
     void LateUpdate(){
         data.coreInfo.text += "Changes to: " + newCoreType.name;
     }
 
+    // Function that does the physical swaping of the cores (invoked by update)
     public void changeBehavior(){
        GameObject newCore = Instantiate(newCoreType, gameObject.transform.position, gameObject.transform.rotation);
        newCore.name = newCoreType.name;

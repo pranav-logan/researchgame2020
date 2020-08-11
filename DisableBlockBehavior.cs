@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Script used to create disable indicators on objects it is attached to
+
 public class DisableBlockBehavior : MonoBehaviour
 {
     // Start is called before the first frame update

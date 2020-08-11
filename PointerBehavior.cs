@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// MOVES CORE's POINTER CHILD OBJECT
+// Script that moves the core's visual pointer in the right direction (relies on parent object's Data Transfer)
 public class PointerBehavior : MonoBehaviour
 {
 
@@ -13,7 +13,7 @@ public class PointerBehavior : MonoBehaviour
     public GameObject indicator;
     public ParticleSystem particle;
 
-    // Start is called before the first frame update
+    // Configure pointer directions
     void Start()
     {
         Vector3 rot = this.gameObject.transform.rotation.eulerAngles;
@@ -27,12 +27,12 @@ public class PointerBehavior : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         
     }
 
+    // Fucntion used to move the pointer when its core changes direction 
     public void move(){
 
         if(quaterionIndex != transfer.directionIndex)
@@ -48,6 +48,7 @@ public class PointerBehavior : MonoBehaviour
         
     }
 
+    // Spawns an INDICATOR at the current position of the pointer
     public void moveIndicator(){
 
         Vector3 rotation = new Vector3(0,0,0);

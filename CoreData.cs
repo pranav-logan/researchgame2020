@@ -3,26 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// HOLDS CORE'S DATA (INPUT & OUTPUT)
+// Holds a core's inputs, outputs and central functionalities 
+
 public class CoreData : MonoBehaviour
 {
     public int input1;
     public int input2;
     public int returnValue;
-    public int storage;
-    public int storage2;
+    public int storage; // Holds temporary values when more than two inputs are received at once
+    public int storage2; // Holds temporary values when more than three inputs are received at once
     public Material coreMat;
     public Material finishedCoreMat;
-    public Text coreInfo;
+    public Text coreInfo; // Core's UI text object
     Color coreMatOrig;
     Color finishedCoreMatOrig; 
     float coreMatAlpha;
     float finishedCoreMatAlpha;
-    bool transparencyFlag = false;
+    bool transparencyFlag = false; // Check for CTRL key, used to make sure all cores match
     public Color defaultColor;
     public Color opaqueColor; 
     
-    // Start is called before the first frame update
+    // Used to organize all cores' UI text objects and colors
     void Start()
     {
         Text[] listOfText = FindObjectsOfType<Text>();
@@ -44,7 +45,7 @@ public class CoreData : MonoBehaviour
         finishedCoreMatAlpha = finishedCoreMatOrig.a;
     }
 
-    // Update is called once per frame
+    // Updates text, and corrects color changes if scene is reloaded 
     void Update()
     {
 
@@ -78,6 +79,7 @@ public class CoreData : MonoBehaviour
         resetColors();
     }
 
+    // Used to update text if the core has a change in one of its inputs
     public void changeText(Text coreInfo){
         Text[] listOfText = FindObjectsOfType<Text>();
         RaycastHit  hit;
@@ -112,6 +114,7 @@ public class CoreData : MonoBehaviour
 
     }
 
+    // Testing function for inputs (Debug)
     public void printAllData(){
         print("Object: " + this.gameObject.name + "\n");
         print("Input 1: " + input1 + "\n");
@@ -126,6 +129,7 @@ public class CoreData : MonoBehaviour
         //storage = 0;
     }
 
+    // Reset colors back to before the scene was modified
     public void resetColors(){
         coreMatOrig.a = coreMatAlpha;
         finishedCoreMatOrig.a = finishedCoreMatAlpha;

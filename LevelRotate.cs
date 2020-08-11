@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Script in charge of allowing camera rotation functionality 
+
 public class LevelRotate : MonoBehaviour
 {
-    // Start is called before the first frame update
     public Transform levelCenter;
     void Start()
     {
 
     }
 
-    // Update is called once per frame
+    // Checks for user input and changes camera rotation based off it
     void Update()
     {
         if(Input.anyKeyDown){
@@ -22,7 +23,7 @@ public class LevelRotate : MonoBehaviour
                 rot = new Vector3(rot.x,rot.y + 45,rot.z);
             }
             if(Input.GetKeyDown(KeyCode.UpArrow)|| Input.GetKeyDown(KeyCode.W)){
-                //rot = new Vector3(rot.x + 45,rot.y,rot.z); Add Functionality if levels become too complex
+                //rot = new Vector3(rot.x + 45,rot.y,rot.z); Add Functionality if levels become too complex (vertical camera movement)
             }
             if(Input.GetKeyDown(KeyCode.RightArrow)|| Input.GetKeyDown(KeyCode.D)){
                 rot = new Vector3(rot.x,rot.y - 45,rot.z);

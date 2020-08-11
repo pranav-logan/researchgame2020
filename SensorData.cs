@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine.UI; 
 using UnityEngine;
 
+// Script that holds sensor functionality
+
 public class SensorData : MonoBehaviour
 {
 
@@ -11,9 +13,8 @@ public class SensorData : MonoBehaviour
     public Vector3 directionOfRay;
     RaycastHit hit;
     public Text sensorInfo;
-
     public GameObject indicator;
-    // Start is called before the first frame update
+    
     void Start()
     {
         directionOfRay = Vector3.down;
@@ -21,7 +22,7 @@ public class SensorData : MonoBehaviour
         sensorInfo.enabled = true;
     }
 
-    // Update is called once per frame
+    // Sends inputs when space is clicked and updates its text object
     void Update()
     {        
         if(Input.GetKeyDown(KeyCode.Space)){
@@ -50,6 +51,7 @@ public class SensorData : MonoBehaviour
         }
     }
 
+    // Debug function used to print output to console
     string printArray(int[] array){
         
         string result = "";
@@ -62,13 +64,15 @@ public class SensorData : MonoBehaviour
         return result;
     }
 
+    // Creates indicators when sensor fire data to a core
     void showIndicator(){
         GameObject tempIndicator;
         tempIndicator = Instantiate(indicator, this.gameObject.transform.position + new Vector3(-0.05f,-1f,-0.25f), Quaternion.Euler(new Vector3(0,0,-90)));
         tempIndicator.SendMessageUpwards("setNum", arrayOfInts[index]);
     }
 
-    void updateSensorText(Text sensorData){ // Legacy Function
+    // Updates sensor's UI text object as array shrinks (legacy, now is done in update)
+    void updateSensorText(Text sensorData){ 
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         LayerMask mask = LayerMask.GetMask("Ignore Raycast"); 

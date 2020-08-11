@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Script that holds reciever functionality and level clear conditions 
+
 public class RecieverData : MonoBehaviour
 {
 
@@ -14,10 +16,8 @@ public class RecieverData : MonoBehaviour
     bool borderEnableFlag = false;
     public List<GameObject> borderList = new List<GameObject>();
 
-    // Start is called before the first frame update
     void Start()
     {
-        //anim = GetComponent<Animation>();
         recieverText.text = "Goal: " + requiredNum;
         levelCompleteText.enabled = false;
     }
@@ -40,6 +40,7 @@ public class RecieverData : MonoBehaviour
         }
     }
 
+    // Tells game manager to move to next level
     void finishLevel(){
         gameManagerBehavior.loadNextLevel();
     }
@@ -50,6 +51,7 @@ public class RecieverData : MonoBehaviour
         }
     }
 
+    // Clears borders (not used)
     public void clearGizmos(){
 
         foreach(GameObject gm in borderList){

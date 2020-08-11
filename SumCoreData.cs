@@ -3,21 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-// SUM COMPUTATION FUNCTIONALITY
+// Script used to give a core the sum behavior once it gets two inputs
 
 public class SumCoreData : MonoBehaviour
 {
     public CoreData coreData;
     public DataTransfer dataTransfer;
     
-
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Mouse1)){
@@ -28,6 +25,7 @@ public class SumCoreData : MonoBehaviour
         }
     }
 
+    // Function that takes the sum of the two inputs received
     public void callAction(int val){
         if (coreData.input1 == 0){
             coreData.input1 = val;

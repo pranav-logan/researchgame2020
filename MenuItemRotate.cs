@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Script used to rotate objects continously (used in main menu and instructions)
+
 public class MenuItemRotate : MonoBehaviour
 {
     // Start is called before the first frame update

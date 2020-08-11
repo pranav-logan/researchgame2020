@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.SceneManagement;
 
+// Script in charge of scene (level) loading and visibility toggles
+
 public class GameManagerBehavior : MonoBehaviour
 {
 
@@ -13,40 +15,23 @@ public class GameManagerBehavior : MonoBehaviour
     public bool wireEnable = false;
     public List<GameObject> arrayOfObj = new List<GameObject>();
     DisableBlockBehavior[] disabledCores;
-    //GameObject[] disableIndicators;
     bool disabledCoresFlag = false;
     bool disablePreventionFlag = false;
-    //GameObject emptyCore;
     DataTransfer[] allCores;
-    //bool replaceFlag = true;
-    //List<GameObject> arrayOfWire = new List<GameObject>(); 
-    // Start is called before the first frame update
+    
+    // Gets all cores and level name upon scene start-up
     void Start()
     {
         currentLevelName = SceneManager.GetActiveScene().name;
-        //arrayOfObj =  GameObject.FindGameObjectsWithTag("Wire");
-
-        /*
-        foreach(WireBehavior wire in Resources.FindObjectsOfTypeAll(typeof(WireBehavior)) as WireBehavior[]){
-            arrayOfWire.Add(wire.gameObject);
-        } 
-        */
-
         disabledCores = FindObjectsOfType<DisableBlockBehavior>();
         allCores = FindObjectsOfType<DataTransfer>();
-        //disableIndicators = GameObject.FindGameObjectsWithTag("Indicator");
     }
 
-    // Update is called once per frame
+    // Update that checks if user clicks a toggle key 
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space)){
             disablePreventionFlag = true;
-            //foreach(DisableBlockBehavior core in disabledCores){
-                //core.gameObject.SetActive(true);
-            //}
-            //replaceCores(replaceFlag); 
-            
         }
 
         if(Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl)){
@@ -72,6 +57,7 @@ public class GameManagerBehavior : MonoBehaviour
         
     }
 
+    // Reloads level
     public void resetLevel(){
         CoreData[] cores = FindObjectsOfType<CoreData>();
         foreach(CoreData core in cores){
@@ -80,11 +66,6 @@ public class GameManagerBehavior : MonoBehaviour
         foreach(DisableBlockBehavior core in disabledCores){
             core.gameObject.SetActive(true);
         }
-        /*
-        for(int i = 0; i < arrayOfWire.Count; i ++){
-            Destroy(arrayOfWire[i].GetComponent<MeshRenderer>());
-        }
-        */
         SceneManager.LoadScene(currentLevelName);
     }
 
@@ -93,6 +74,7 @@ public class GameManagerBehavior : MonoBehaviour
         print("Delay added, current time: " + raycastDelay);
     }
 
+    // Scene (level) loading functions
     public void loadNextLevel(){
         buildIndex++;
         SceneManager.LoadScene(buildIndex);
@@ -121,10 +103,11 @@ public class GameManagerBehavior : MonoBehaviour
     public void loadInstructionsCredits(){
         SceneManager.LoadScene("Credits");
     }
+
+    // Hides wires from scene view
     public void hideWires(){
         for(int i = 0; i < arrayOfObj.Count; i++){
                 arrayOfObj[i].SetActive(wireEnable);
-                //print("Wire was enabled: " + wireEnable + " Name: " + arrayOfObj[i].name);
         }
 
         if(wireEnable)
@@ -133,18 +116,4 @@ public class GameManagerBehavior : MonoBehaviour
             wireEnable = true;
     }
 
-    /*
-    void replaceCores(bool flag){
-        if(flag == true){
-            foreach(DataTransfer data in allCores){
-                if(data.firstMoveFlag == false){
-                    Instantiate(emptyCore, data.gameObject.transform.position, data.gameObject.transform.rotation);
-                    data.gameObject.SetActive(false);
-                }
-            }
-            
-        }
-        replaceFlag = false;
-    }
-    */
 }
